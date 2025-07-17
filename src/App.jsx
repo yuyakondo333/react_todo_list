@@ -44,7 +44,7 @@ function App() {
     setCurrentTodo(null);
   };
 
-  const updateTodos = (todo) => {
+  const updateTodos = () => {
     if (currentTodo && currentTodo.text.trim()) {
       setTodos(todos.map(todo =>
         todo.id === currentTodo.id ? currentTodo : todo

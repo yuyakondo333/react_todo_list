@@ -54,6 +54,13 @@ function App() {
     }
   }
 
+  const deleteTodo = (todoId) => {
+    const message = '本当によろしいですか？';
+    if (confirm(message))  {
+      setTodos(todos.filter(todo => todo.id !== todoId));
+    }
+  }
+
   return (
     <>
       <h1 className='mb-8'>Todo App</h1>
@@ -81,7 +88,7 @@ function App() {
               todoActions={{
                 toggleTodo: () => toggleTodo(todo.id),
                 onClickEdit : () => editTodo(todo),
-                onClickDelete: () => setTodos(todos.filter((t) => t.id !== todo.id)),
+                onClickDelete: () => deleteTodo(todo.id),
               }}
             />
           );

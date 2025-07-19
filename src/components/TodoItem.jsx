@@ -4,7 +4,7 @@ import { EditButton } from './EditButton';
 import { DeleteButton } from './DeleteButton';
 
 export const TodoItem = (props) => {
-  const { todo, editProps, todoActions} = props;
+  const { todo, editProps, todoActions } = props;
   const edit = editProps.isEditing && editProps.currentTodo && editProps.currentTodo.id === todo.id;
   return (
     <>

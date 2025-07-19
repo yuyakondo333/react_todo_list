@@ -6,7 +6,6 @@ import { TodoItem } from './components/TodoItem';
 function App() {
   const [todos, setTodos] = useState([]);
   const [input, setInput] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
   const [currentTodo, setCurrentTodo] = useState(null);
   const nextId = useRef(1);
 
@@ -38,25 +37,18 @@ function App() {
     setCurrentTodo({...currentTodo, text: e.target.value});
   }
 
-  const editTodo = (todo) => {
-    setIsEditing(true);
-    setCurrentTodo({...todo});
-  }
-
-  const cancelEdit = () => {
-    setIsEditing(false);
-    setCurrentTodo(null);
-  };
+  const cancelEdit = () => setCurrentTodo(null);
 
   const updateTodos = () => {
     if (currentTodo && currentTodo.text.trim()) {
       setTodos(todos.map(todo =>
         todo.id === currentTodo.id ? currentTodo : todo
       ));
-      setIsEditing(false);
       setCurrentTodo(null);
     }
   }
+
+  const editTodo = (todo) => setCurrentTodo({...todo});
 
   const deleteTodo = (todoId) => {
     const message = '本当によろしいですか？';
@@ -83,7 +75,6 @@ function App() {
             key={todo.id}
             todo={todo}
             editProps={{
-              isEditing,
               currentTodo,
               onEditTodo,
               cancelEdit,
